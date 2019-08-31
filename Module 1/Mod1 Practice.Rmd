@@ -1,0 +1,64 @@
+---
+title: "Module 1 Practice"
+author: "Adam Douglas"
+date: "8/31/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(faraway)
+```
+
+## *Linear Models with R*
+
+### Problem 1.1
+
+```{r cars}
+data(teengamb)
+```
+
+```{r}
+teengamb$sex <- factor(teengamb$sex)
+levels(teengamb$sex) <- list("Female" = 1, "Male" = 0)
+summary(teengamb)
+```
+
+```{r}
+teengamb %>% ggplot(aes(x=sex, y=gamble)) + geom_boxplot() +
+  labs(title="Gambling Expenditures", subtitle = "By Sex",
+       y="$ Spent  (Pounds per Year)", x="Sex")
+```
+
+```{r}
+teengamb %>% ggplot(aes(x=income, y=gamble, col=sex)) + geom_point() +
+  scale_color_discrete(name="Sex") +
+  labs(title="Gambling Expenditures by Income", subtitle="By Sex",
+       y="$ Spent  (Pounds per Year)", x="Income (Pounds per Week)")
+```
+
+```{r}
+teengamb %>% ggplot(aes(x=status, y=gamble, col=sex)) + geom_point() +
+  scale_color_discrete(name="Sex") +
+  labs(title="Gambling Expenditures by Socioeconomic Status", subtitle="By Sex",
+       y="$ Spent  (Pounds per Year)", x="Socioeconomic Status")
+```
+
+```{r}
+teengamb %>% ggplot(aes(x=status, y=income, size=gamble, col=sex)) +
+  geom_point() + scale_color_discrete(name="Sex") +
+  scale_size_continuous(name="Gambling Expenditures") +
+  labs(title="Gambling Expenditures by Socioeconomic Status", subtitle="By Sex",
+       y="Income  (Pounds per Week)", x="Socioeconomic Status")
+```
+
+### Problem 1.3
+
+<same as the first>
+
+### Problem 1.5
+
+<same as the first>
+
+
